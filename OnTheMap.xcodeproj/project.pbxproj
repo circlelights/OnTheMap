@@ -13,6 +13,7 @@
 		9B3FA3021E980B58002F9C6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3FA3011E980B58002F9C6E /* Assets.xcassets */; };
 		9B3FA3051E980B58002F9C6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3FA3031E980B58002F9C6E /* LaunchScreen.storyboard */; };
 		9B3FA30D1E980C56002F9C6E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */; };
+		9B3FA30F1E983918002F9C6E /* on-the-map-assets-new in Resources */ = {isa = PBXBuildFile; fileRef = 9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9B3FA3041E980B58002F9C6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B3FA3061E980B58002F9C6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "on-the-map-assets-new"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				9B3FA2FC1E980B58002F9C6E /* ViewController.swift */,
 				9B3FA2FE1E980B58002F9C6E /* Main.storyboard */,
 				9B3FA3011E980B58002F9C6E /* Assets.xcassets */,
+				9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */,
 				9B3FA3031E980B58002F9C6E /* LaunchScreen.storyboard */,
 				9B3FA3061E980B58002F9C6E /* Info.plist */,
 			);
@@ -129,6 +132,7 @@
 			files = (
 				9B3FA3051E980B58002F9C6E /* LaunchScreen.storyboard in Resources */,
 				9B3FA3021E980B58002F9C6E /* Assets.xcassets in Resources */,
+				9B3FA30F1E983918002F9C6E /* on-the-map-assets-new in Resources */,
 				9B3FA3001E980B58002F9C6E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +312,7 @@
 				9B3FA30B1E980B58002F9C6E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
