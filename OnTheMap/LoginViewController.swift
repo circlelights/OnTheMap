@@ -6,4 +6,19 @@
 //  Copyright © 2017 Developer2017. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class LoginViewController: UIViewController {
+    @IBOutlet weak var udacityWebView: UIWebView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    //Try loading this way as well, but try from viewDidLoad first
+    func loadHTMLString(_ string: String, baseURL: URL?) {
+        
+    }
+    
+}
