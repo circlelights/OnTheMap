@@ -14,6 +14,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let url = NSURL (string: "https://www.udacity.com")
+        let requestObj = URLRequest(url: url! as URL)
+        udacityWebView.loadRequest(requestObj)
     }
     
     //Try loading this way as well, but try from viewDidLoad first
