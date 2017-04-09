@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9B3FA2FB1E980B58002F9C6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3FA2FA1E980B58002F9C6E /* AppDelegate.swift */; };
-		9B3FA2FD1E980B58002F9C6E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3FA2FC1E980B58002F9C6E /* ViewController.swift */; };
 		9B3FA3001E980B58002F9C6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3FA2FE1E980B58002F9C6E /* Main.storyboard */; };
 		9B3FA3021E980B58002F9C6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B3FA3011E980B58002F9C6E /* Assets.xcassets */; };
 		9B3FA3051E980B58002F9C6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B3FA3031E980B58002F9C6E /* LaunchScreen.storyboard */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		9B3FA2F71E980B58002F9C6E /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3FA2FA1E980B58002F9C6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9B3FA2FC1E980B58002F9C6E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B3FA2FF1E980B58002F9C6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B3FA3011E980B58002F9C6E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B3FA3041E980B58002F9C6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 			children = (
 				9B3FA2FA1E980B58002F9C6E /* AppDelegate.swift */,
 				9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */,
-				9B3FA2FC1E980B58002F9C6E /* ViewController.swift */,
 				9B3FA2FE1E980B58002F9C6E /* Main.storyboard */,
 				9B3FA3011E980B58002F9C6E /* Assets.xcassets */,
 				9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */,
@@ -145,7 +142,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B3FA30D1E980C56002F9C6E /* LoginViewController.swift in Sources */,
-				9B3FA2FD1E980B58002F9C6E /* ViewController.swift in Sources */,
 				9B3FA2FB1E980B58002F9C6E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

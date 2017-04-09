@@ -9,16 +9,15 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    @IBOutlet weak var udacityWebView: UIWebView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        view.layer.borderWidth = 1.0
+        view.layer.cornerRadius = 10.0
     }
     
-    //Try loading this way as well, but try from viewDidLoad first
-    func loadHTMLString(_ string: String, baseURL: URL?) {
-        
-    }
+
     
 }
