@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let url = NSURL (string: "https://www.udacity.com")
+        let url = NSURL (string: "https://auth.udacity.com/sign-in?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated")
         let requestObj = URLRequest(url: url! as URL)
         udacityWebView.loadRequest(requestObj)
     }
