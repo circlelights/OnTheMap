@@ -24,7 +24,7 @@ struct Constants {
         static let ApiKey = "api_key"
         static let RequestToken = "request_token"
         static let SessionID = "session_id"
-        static let Username = "username"
+        static let Email = "email"
         static let Password = "password"
     }
     
@@ -35,9 +35,6 @@ struct Constants {
     
     // MARK: TMDB Response Keys
     struct TMDBResponseKeys {
-        static let Title = "title"
-        static let ID = "id"
-        static let PosterPath = "poster_path"
         static let StatusCode = "status_code"
         static let StatusMessage = "status_message"
         static let SessionID = "session_id"
