@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class LoginViewController: UIViewController {
     
     
@@ -17,15 +18,30 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
-
+    @IBOutlet var udacityLink: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         view.layer.borderWidth = 1.0
         view.layer.cornerRadius = 10.0
+        let attrStr = try! NSAttributedString(
+            data: "Don't have an account?  <a href='https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated'>Sign Up</a>".data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+       udacityLink.attributedText = attrStr
+//        var str : String = "Don't have an account? Sign Up"
+//        udacityLink.delegate = self
+//        udacityLink.text = str as String
+//        var range : Range = str.range(of: "Sign Up")!
+//        udacityLink.addLinkToURL(NSURL(string: "https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated")!, withRange: range)
     }
-    
+
+//    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: URL!) {
+//        UIApplication.sharedApplication.openURL(url) as (URL)
+//    }
+
+
+
     
     @IBAction func loginPressed(_ sender: AnyObject) {
         
