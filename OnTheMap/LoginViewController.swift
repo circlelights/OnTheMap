@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
              Step 4: Get the user id ;)
              Step 5: Go to the next view!
              */
-   //         getRequestToken()
+             getRequestToken()
         }
     }
     
@@ -62,6 +62,24 @@ class LoginViewController: UIViewController {
         resignIfFirstResponder(emailTextField)
         resignIfFirstResponder(passwordTextField)
     }
+}
+
+private func getRequestToken() {
+        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: String.Encoding.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil { // Handle error…
+                return
+            }
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range) /* subset response data! */
+            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+        }
+        task.resume()
 }
 
 // MARK: - LoginViewController (Configure UI)
@@ -83,23 +101,6 @@ private extension LoginViewController {
         }
     }
 
-//    let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-//    request.httpMethod = "POST"
-//    request.addValue("application/json", forHTTPHeaderField: "Accept")
-//    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//    request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: String.Encoding.utf8)
-//    let session = URLSession.shared
-//    let task = session.dataTask(with: request as URLRequest) { data, response, error in
-//        if error != nil { // Handle error…
-//            return
-//        }
-//        let range = Range(5..<data!.count)
-//        let newData = data?.subdata(in: range) /* subset response data! */
-//        print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-//    }
-//    task.resume()
-//    
-//    
 //    let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
 //    request.httpMethod = "DELETE"
 //    var xsrfCookie: HTTPCookie? = nil
