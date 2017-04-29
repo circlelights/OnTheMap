@@ -17,7 +17,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var debugTextLabel: UILabel!
     @IBOutlet var udacityLink: UILabel!
     
     override func viewDidLoad() {
@@ -29,17 +28,8 @@ class LoginViewController: UIViewController {
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
             documentAttributes: nil)
        udacityLink.attributedText = attrStr
-//        var str : String = "Don't have an account? Sign Up"
-//        udacityLink.delegate = self
-//        udacityLink.text = str as String
-//        var range : Range = str.range(of: "Sign Up")!
-//        udacityLink.addLinkToURL(NSURL(string: "https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated")!, withRange: range)
+
     }
-
-//    func attributedLabel(label: TTTAttributedLabel!, didSelectLinkWithURL url: URL!) {
-//        UIApplication.sharedApplication.openURL(url) as (URL)
-//    }
-
 
 
     
@@ -48,7 +38,7 @@ class LoginViewController: UIViewController {
         userDidTapView(self)
         
         if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            debugTextLabel.text = "Username or Password Empty."
+            print("Username or Password Empty.")
         } else {
             setUIEnabled(false)
             
@@ -60,11 +50,33 @@ class LoginViewController: UIViewController {
              Step 2: Ask the user for permission via the API ("login")
              Step 3: Create a session ID
              
+             
              Extra Steps...
              Step 4: Get the user id ;)
              Step 5: Go to the next view!
              */
-             getRequestToken()
+            let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = "{\"udacity\": {\"username\": \"\(emailTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
+   
+            
+            let session = URLSession.shared
+            let task = session.dataTask(with: request as URLRequest) { data, response, error in
+                print("\nLoginViewController.loginPressed.task closure...")
+                if error != nil { // Handle error…
+                    return
+                }
+                
+                let range = Range(5..<data!.count)
+                let newData = data?.subdata(in: range) /* subset response data! */
+                print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+                print("\tfinished printing data...")
+            }
+            task.resume()
+
+
         }
     }
     
@@ -80,23 +92,6 @@ class LoginViewController: UIViewController {
     }
 }
 
-private func getRequestToken() {
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"udacity\": {\"username\": \"account@domain.com\", \"password\": \"********\"}}".data(using: String.Encoding.utf8)
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil { // Handle error…
-                return
-            }
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-        }
-        task.resume()
-}
 
 private func deleteSession() {
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
@@ -121,19 +116,6 @@ private func deleteSession() {
         task.resume()
 }
 
-private func getUserID() {
-    let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/users/3903878747")!)
-    let session = URLSession.shared
-    let task = session.dataTask(with: request as URLRequest) { data, response, error in
-        if error != nil { // Handle error...
-            return
-        }
-        let range = Range(5..<data!.count)
-        let newData = data?.subdata(in: range) /* subset response data! */
-        print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-    }
-    task.resume()
-}
 
 
 // MARK: - LoginViewController (Configure UI)
@@ -144,8 +126,6 @@ private extension LoginViewController {
         emailTextField.isEnabled = enabled
         passwordTextField.isEnabled = enabled
         loginButton.isEnabled = enabled
-        debugTextLabel.text = ""
-        debugTextLabel.isEnabled = enabled
         
         // adjust login button alpha
         if enabled {
