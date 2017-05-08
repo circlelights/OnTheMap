@@ -63,10 +63,9 @@
 			isa = PBXGroup;
 			children = (
 				9B3FA2FA1E980B58002F9C6E /* AppDelegate.swift */,
+				9BFBC3B11EC0CA3A008D3BE1 /* Model */,
 				9B315CE41EB25A3D00310E17 /* Constants.swift */,
 				9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */,
-				9B1D1FDE1EBA7AFB003E3320 /* UdacityConvenience.swift */,
-				9B1D1FE01EBA7B39003E3320 /* UdacityClient.swift */,
 				9B3FA2FE1E980B58002F9C6E /* Main.storyboard */,
 				9B3FA3011E980B58002F9C6E /* Assets.xcassets */,
 				9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */,
@@ -74,6 +73,39 @@
 				9B3FA3061E980B58002F9C6E /* Info.plist */,
 			);
 			path = OnTheMap;
+			sourceTree = "<group>";
+		};
+		9BFBC3B11EC0CA3A008D3BE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9BFBC3B21EC0CA48008D3BE1 /* Clients */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9BFBC3B21EC0CA48008D3BE1 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				9BFBC3B41EC0CB6C008D3BE1 /* Parse */,
+				9BFBC3B31EC0CAA3008D3BE1 /* Udacity */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		9BFBC3B31EC0CAA3008D3BE1 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+				9B1D1FDE1EBA7AFB003E3320 /* UdacityConvenience.swift */,
+				9B1D1FE01EBA7B39003E3320 /* UdacityClient.swift */,
+			);
+			name = Udacity;
+			sourceTree = "<group>";
+		};
+		9BFBC3B41EC0CB6C008D3BE1 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Parse;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
