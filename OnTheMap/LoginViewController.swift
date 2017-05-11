@@ -9,7 +9,7 @@
 import UIKit
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITabBarDelegate {
     
     
     // MARK: Outlets
@@ -18,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet var udacityLink: UILabel!
+    @IBOutlet weak var debugTextLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +67,7 @@ class LoginViewController: UIViewController {
             let task = session.dataTask(with: request as URLRequest) { data, response, error in
                 print("\nLoginViewController.loginPressed.task closure...")
                 if error != nil { // Handle error…
+ //                   self.displayError(<#T##errorString: String?##String?#>)
                     return
                 }
                 
@@ -73,9 +75,11 @@ class LoginViewController: UIViewController {
                 let newData = data?.subdata(in: range) /* subset response data! */
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
                 print("\tfinished printing data...")
+                
+                
             }
             task.resume()
-
+            self.completeLogin()
 
         }
     }
@@ -85,6 +89,19 @@ class LoginViewController: UIViewController {
             textField.resignFirstResponder()
     }
 }
+    
+    private func completeLogin() {
+        debugTextLabel.text = ""
+        let controller = storyboard!.instantiateViewController(withIdentifier: "MapandTableTabView") as! UITabBarController
+        present(controller, animated: true, completion: nil)
+    }
+
+    func displayError(_ errorString: String?) {
+        if let errorString = errorString {
+            debugTextLabel.text = errorString
+        }
+    }
+    
     
     @IBAction func userDidTapView(_ sender: AnyObject) {
         resignIfFirstResponder(emailTextField)
