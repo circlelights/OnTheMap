@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     @IBOutlet var udacityLink: UILabel!
     @IBOutlet weak var debugTextLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layer.borderWidth = 1.0
@@ -73,13 +74,15 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 
                 let range = Range(5..<data!.count)
                 let newData = data?.subdata(in: range) /* subset response data! */
+
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
                 print("\tfinished printing data...")
+                self.completeLogin()
                 
                 
             }
             task.resume()
-            self.completeLogin()
+           
 
         }
     }

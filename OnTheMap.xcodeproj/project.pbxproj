@@ -17,6 +17,8 @@
 		9B3FA30D1E980C56002F9C6E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */; };
 		9B3FA30F1E983918002F9C6E /* on-the-map-assets-new in Resources */ = {isa = PBXBuildFile; fileRef = 9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */; };
 		DFE6661E1EC6800B008A3AD6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFE6661D1EC6800B008A3AD6 /* MapKit.framework */; };
+		DFE666201EC7544F008A3AD6 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE6661F1EC7544F008A3AD6 /* ParseConvenience.swift */; };
+		DFE666221EC75464008A3AD6 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE666211EC75464008A3AD6 /* ParseClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "on-the-map-assets-new"; sourceTree = "<group>"; };
 		DFE6661D1EC6800B008A3AD6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DFE6661F1EC7544F008A3AD6 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
+		DFE666211EC75464008A3AD6 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 		9BFBC3B41EC0CB6C008D3BE1 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				DFE6661F1EC7544F008A3AD6 /* ParseConvenience.swift */,
+				DFE666211EC75464008A3AD6 /* ParseClient.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -200,6 +206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B1D1FE11EBA7B39003E3320 /* UdacityClient.swift in Sources */,
+				DFE666201EC7544F008A3AD6 /* ParseConvenience.swift in Sources */,
+				DFE666221EC75464008A3AD6 /* ParseClient.swift in Sources */,
 				9B3FA30D1E980C56002F9C6E /* LoginViewController.swift in Sources */,
 				9B3FA2FB1E980B58002F9C6E /* AppDelegate.swift in Sources */,
 				9B315CE51EB25A3D00310E17 /* Constants.swift in Sources */,
