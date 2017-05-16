@@ -99,7 +99,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k65-sV-FdX" id="Daq-Cg-5uP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -115,16 +115,22 @@
             </objects>
             <point key="canvasLocation" x="1844" y="-346.77661169415296"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="SJa-cv-gFF">
             <objects>
-                <viewController id="vt7-PU-xeI" sceneMemberID="viewController">
+                <viewController id="vt7-PU-xeI" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" mapType="standard" showsPointsOfInterest="NO" id="VWe-1k-gIS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="vt7-PU-xeI" id="cK1-3h-2VP"/>
+                        </connections>
                     </mapView>
                     <navigationItem key="navigationItem" id="m8e-b0-oA5"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="VWe-1k-gIS" id="lQo-Pb-cVY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSS-ee-h2W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -156,7 +162,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="te1-Tf-JAz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" id="Xp7-7c-0vq"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="PkW-zF-KW1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PkW-zF-KW1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
