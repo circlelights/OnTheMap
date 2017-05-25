@@ -42,7 +42,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // used to create custom structs. Perhaps StudentLocation structs.
         
         for dictionary in locations {
-            
+           
+            //Jason
+            //struct StudentLocations {
+        //}
+        
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.
             let lat = CLLocationDegrees(dictionary["latitude"] as! Double)
@@ -117,6 +121,64 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     // Some sample data. This is a dictionary that is more or less similar to the
     // JSON data that you will download from Parse.
+    
+    private func postAStudentLocation(newUniqueKey: String, newAddress: String, newLat: String, newLon: String, mediaURL: String) {
+        
+        let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
+        request.httpMethod = "POST"
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{\"uniqueKey\": \"\(newUniqueKey)\", \"firstName\": \"马\", \"lastName\": \"丁\",\"mapString\": \"\(newAddress)\", \"mediaURL\": \"https://\(mediaURL)\",\"latitude\": \(newLat), \"longitude\": \(newLon)}".data(using: String.Encoding.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil { // Handle error…
+                return
+            }
+            print ("post student location:")
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
+            
+            let parsedResult: [String:AnyObject]!
+            
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String:AnyObject]
+            } catch {
+                print ("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            
+            guard let objectId = parsedResult["objectId"] as? String else {
+                print ("There is no objectId")
+                return
+            }
+            
+ //           StudentInformation.newStudent.objectId = objectId
+            
+        }
+        task.resume()
+        
+    }
+    
+    private func putAStudentLocation(newUniqueKey: String, newAddress: String, newLat: String, newLon: String, objectId: String, mediaURL: String) {
+        
+        let urlString = "https://parse.udacity.com/parse/classes/StudentLocation/\(objectId)"
+        let url = URL(string: urlString)
+        let request = NSMutableURLRequest(url: url!)
+        request.httpMethod = "PUT"
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = "{\"uniqueKey\": \"\(newUniqueKey)\", \"firstName\": \"Ma\", \"lastName\": \"Ding\",\"mapString\": \"\(newAddress)\", \"mediaURL\": \"https://\(mediaURL)\",\"latitude\": \(newLat), \"longitude\": \(newLat)}".data(using: String.Encoding.utf8)
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            if error != nil { // Handle error…
+                return
+            }
+            print ("Put A StudentLocation Information.")
+            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
+        }
+        task.resume()
+    }
     
     func hardCodedLocationData() -> [[String : AnyObject]] {
         return  [

@@ -13,10 +13,12 @@ class UdacityClient : NSObject {
     
     // shared session
     var session = URLSession.shared
+    var studentInfo = LoginViewController()
     
-    func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    
+    //func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
- 
+    func taskForPOSTMethod(result: AnyObject?) -> URLSessionDataTask {
     /*
      Steps for Authentication...
      https://www.udacity.com/api/session
@@ -34,7 +36,7 @@ class UdacityClient : NSObject {
     request.httpMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Accept")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//    request.httpBody = "{\"udacity\": {\"username\": \"\(emailTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
+    request.httpBody = "{\"udacity\": {\"username\": \"\(studentInfo.emailTextField.text!)\", \"password\": \"\(studentInfo.passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
         
     //let session = URLSession.shared
     let task = session.dataTask(with: request as URLRequest) { data, response, error in

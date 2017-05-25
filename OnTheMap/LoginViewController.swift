@@ -40,10 +40,21 @@ class LoginViewController: UIViewController, UITabBarDelegate {
         userDidTapView(self)
         
         if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            print("Username or Password Empty.")
+            debugTextLabel.text! = "Please enter username or password"
         } else {
             setUIEnabled(false)
-            
+            UdacityClient.sharedInstance().taskForPOSTMethod() { (success) in
+                if success {
+                        self.completeLogin()
+                } else {
+                    performUIUpdatesOnMain {
+                        self.setUIEnabled(true)
+    
+                    }
+                }
+            }
+        }
+    }
             /*
              Steps for Authentication...
              https://www.udacity.com/api/session
@@ -56,7 +67,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
              Extra Steps...
              Step 4: Get the user id ;)
              Step 5: Go to the next view!
-             */
+
             let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -77,15 +88,14 @@ class LoginViewController: UIViewController, UITabBarDelegate {
 
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
                 print("\tfinished printing data...")
-                self.completeLogin()
+              */
+
                 
                 
-            }
-            task.resume()
+//            }
+//            task.resume()
            
 
-        }
-    }
     
     private func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {
