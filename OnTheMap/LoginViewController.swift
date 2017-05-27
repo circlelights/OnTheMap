@@ -43,7 +43,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             debugTextLabel.text! = "Please enter username or password"
         } else {
             setUIEnabled(false)
-            UdacityClient.sharedInstance().taskForPOSTMethod() { (success) in
+            UdacityClient.sharedInstance().authenticateWithViewController(self) { (success, errorString) in
                 if success {
                         self.completeLogin()
                 } else {

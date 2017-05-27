@@ -18,7 +18,7 @@ class UdacityClient : NSObject {
     
     //func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-    func taskForPOSTMethod(result: AnyObject?) -> URLSessionDataTask {
+    func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
     /*
      Steps for Authentication...
      https://www.udacity.com/api/session
