@@ -15,6 +15,7 @@ class UdacityClient : NSObject {
     var session = URLSession.shared
     var studentInfo = LoginViewController()
     
+    //MARK: TODO Define properties for storing student ID, First Name, & Last NAme
     
     //func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
