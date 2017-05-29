@@ -66,7 +66,6 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             let task = session.dataTask(with: request as URLRequest) { data, response, error in
                 print("\nLoginViewController.loginPressed.task closure...")
                 if error != nil { // Handle error…
-                    //                    self.displayError(<#T##errorString: String?##String?#>)
                     return
                 }
                 
@@ -90,7 +89,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 }
                 
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-                print("\tfinished printing data...")                
+                print("\tfinished printing data...")
             }
             task.resume()
             

@@ -147,7 +147,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             
-            guard let objectId = parsedResult["objectId"] as? String else {
+            guard (parsedResult["objectId"] as? String) != nil else {
                 print ("There is no objectId")
                 return
             }
