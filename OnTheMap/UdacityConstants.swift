@@ -28,5 +28,15 @@ extension UdacityClient {
         static let Email = "email"
         static let Password = "password"
     }
+    
+    // MARK: Flickr Response Keys
+    struct UdacityResponseKeys {
+        static let Status = "status"
+        static let Registered = "registered"
+        static let Key = "key"
+        static let Session = "session"
+        static let ID = "id"
+        static let Expiration = "expiration"
+    }
 
 }

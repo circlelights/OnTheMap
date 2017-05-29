@@ -5,7 +5,7 @@
 //  Created by Developer2017 on 5/3/17.
 //  Copyright © 2017 Developer2017. All rights reserved.
 //
-
+/*
 import Foundation
 
 extension UdacityClient {
@@ -145,6 +145,6 @@ private func getUserID(_ completionHandlerForUserID: @escaping (_ success: Bool,
     }
     
 }
-    
+*/    
 
     
