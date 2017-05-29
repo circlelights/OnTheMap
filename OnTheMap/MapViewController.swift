@@ -152,8 +152,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 return
             }
             
- //           StudentInformation.newStudent.objectId = objectId
-            
         }
         task.resume()
         
