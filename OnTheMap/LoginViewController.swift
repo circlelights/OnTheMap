@@ -77,14 +77,14 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 } catch {
                     self.displayError("Could not parse the data as JSON: '\(newData)'")
                 }
-                if let session = parsedResult["session"] as? [String:AnyObject] {
-                    if session["id"] as? [String:AnyObject] != nil {
+                if let thisSession = parsedResult["session"] as? [String:AnyObject] {
+                    if thisSession["id"] as? [String:AnyObject] != nil {
                         self.completeLogin()
                     } else {
                         print("Invalid Account")
                         
                     }
-
+                    
                 }
                 
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
