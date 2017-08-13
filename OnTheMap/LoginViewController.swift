@@ -42,6 +42,23 @@ class LoginViewController: UIViewController, UITabBarDelegate {
         if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
             debugTextLabel.text! = "Please enter username or password"
         } else {
+            
+            
+            // MARK: TODO - Authenticate User by calling convenience method
+            
+            // authenticateUdacityUser(email, password) {() in  ...}
+            
+            UdacityClient.sharedInstance().authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
+                //  success  -- implies that Udacity account id has been extracted
+                
+                if success {
+                    // MARK: TODO
+                    //1 . GET from udacty, user's first_name, & last_name - store in UdacityClient
+                    //2. GET from Parse - the user's student location, if it exists
+                    //3. GET from Parse - the latest 100 student locations
+                    //4.  Transition to the map view
+                }
+            })
             /*
              Steps for Authentication...
              https://www.udacity.com/api/session
@@ -79,7 +96,9 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 }
                 if let thisSession = parsedResult["session"] as? [String:AnyObject] {
                     if thisSession["id"] as? [String:AnyObject] != nil {
+                        DispatchQueue.main.async {
                         self.completeLogin()
+                        }
                     } else {
                         print("Invalid Account")
                         
@@ -118,8 +137,10 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     
     private func completeLogin() {
         debugTextLabel.text = ""
-        let controller = storyboard!.instantiateViewController(withIdentifier: "MapandTableTabView") as! UITabBarController
-        present(controller, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "MapandTableTabView") as! UITabBarController
+            self.present(controller, animated: true, completion: nil)
+        }
     }
     
     func displayError(_ errorString: String?) {

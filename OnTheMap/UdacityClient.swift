@@ -10,16 +10,23 @@ import Foundation
 
 class UdacityClient : NSObject {
     
+    func taskForPOST (request:NSMutableURLRequest, completionHandlerForPOST:(_ data:Data?, _ error: String?)->Void) {
+        // MARK: TODO - implement the network request based on the Udacity documentation
+    }
+    
+    
     
     // shared session
     var session = URLSession.shared
     var studentInfo = LoginViewController()
+ 
+    
     
     //MARK: TODO Define properties for storing student ID, First Name, & Last NAme
     
-    //func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    //func taskForPOSTMethod01(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
-    func taskForPOSTMethod(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForPOSTMethod01(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
     /*
      Steps for Authentication...
      https://www.udacity.com/api/session
