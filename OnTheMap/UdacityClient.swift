@@ -10,14 +10,41 @@ import Foundation
 
 class UdacityClient : NSObject {
     
-    func taskForPOST (request:NSMutableURLRequest, completionHandlerForPOST:(_ data:Data?, _ error: String?)->Void) {
+    func taskForPOST (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:Data?, _ error: String?)->Void) {
         // MARK: TODO - implement the network request based on the Udacity documentation
+        let session = URLSession.shared
+        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+            print("\nLoginViewController.loginPressed.task closure...")
+            if error != nil { // Handle error…
+                //                   self.displayError(<#T##errorString: String?##String?#>)
+                return
+            }
+            
+            let range = Range(5..<data!.count)
+            let newData = data?.subdata(in: range) /* subset response data! */
+            /* 5/6. Parse the data and use the data (happens in completion handler) */
+            //self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+            convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
     }
     
-    
+    // given raw JSON, return a usable Foundation object
+    func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
+        
+        var parsedResult: AnyObject! = nil
+        do {
+            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+        } catch {
+            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+            completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+        }
+        
+        completionHandlerForConvertData(parsedResult, nil)
+    }
+        
+        
     
     // shared session
-    var session = URLSession.shared
+    //    var session = URLSession.shared
     var studentInfo = LoginViewController()
  
     
@@ -46,7 +73,7 @@ class UdacityClient : NSObject {
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpBody = "{\"udacity\": {\"username\": \"\(studentInfo.emailTextField.text!)\", \"password\": \"\(studentInfo.passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
         
-    //let session = URLSession.shared
+    let session = URLSession.shared
     let task = session.dataTask(with: request as URLRequest) { data, response, error in
         print("\nLoginViewController.loginPressed.task closure...")
         if error != nil { // Handle error…
@@ -64,14 +91,15 @@ class UdacityClient : NSObject {
     task.resume()
         return task
 }
+        
 
 
-    
+   
     
     
     // MARK: Shared Instance
     
-    class func sharedInstance() -> UdacityClient {
+    func sharedInstance() -> UdacityClient {
         struct Singleton {
             static var sharedInstance = UdacityClient()
         }
