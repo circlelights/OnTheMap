@@ -10,13 +10,22 @@ import Foundation
 
 class UdacityClient : NSObject {
     
-    func taskForPOST (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:Data?, _ error: String?)->Void) {
+    func taskForPOST (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         // MARK: TODO - implement the network request based on the Udacity documentation
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
+ 
+            func sendError(_ error: String) {
+                print(error)
+                let userInfo = [NSLocalizedDescriptionKey : error]
+                completionHandlerForPOST(nil, NSError(domain: "taskForPOST", code: 1, userInfo: userInfo))
+            }
+            
+            
             print("\nLoginViewController.loginPressed.task closure...")
             if error != nil { // Handle error…
                 //                   self.displayError(<#T##errorString: String?##String?#>)
+                
                 return
             }
             
@@ -24,7 +33,9 @@ class UdacityClient : NSObject {
             let newData = data?.subdata(in: range) /* subset response data! */
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             //self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
-            convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+            self.convertDataWithCompletionHandler(newData!, completionHandlerForConvertData: completionHandlerForPOST)
+        }
+        task.resume()
     }
     
     // given raw JSON, return a usable Foundation object
@@ -50,48 +61,7 @@ class UdacityClient : NSObject {
     
     
     //MARK: TODO Define properties for storing student ID, First Name, & Last NAme
-    
-    //func taskForPOSTMethod01(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
-        
-    func taskForPOSTMethod01(_ method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
-    /*
-     Steps for Authentication...
-     https://www.udacity.com/api/session
-     
-     Step 1: Create a request token
-     Step 2: Ask the user for permission via the API ("login")
-     Step 3: Create a session ID
-     
-     
-     Extra Steps...
-     Step 4: Get the user id ;)
-     Step 5: Go to the next view!
-     */
-    let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-    request.httpMethod = "POST"
-    request.addValue("application/json", forHTTPHeaderField: "Accept")
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.httpBody = "{\"udacity\": {\"username\": \"\(studentInfo.emailTextField.text!)\", \"password\": \"\(studentInfo.passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
-        
-    let session = URLSession.shared
-    let task = session.dataTask(with: request as URLRequest) { data, response, error in
-        print("\nLoginViewController.loginPressed.task closure...")
-        if error != nil { // Handle error…
-            //                   self.displayError(<#T##errorString: String?##String?#>)
-            return
-        }
-        
-        let range = Range(5..<data!.count)
-        let newData = data?.subdata(in: range) /* subset response data! */
-        print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-        print("\tfinished printing data...")
-        
-        
-    }
-    task.resume()
-        return task
-}
-        
+
 
 
    

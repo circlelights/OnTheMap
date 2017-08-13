@@ -12,7 +12,7 @@ extension UdacityClient {
     
     // Convenience Method for authenticating Udacity User
     
-    func authenticateUser (email:String, password:String, completionHandler: (_ success: Bool, _ error:String?) -> Void) {
+    func authenticateUser (email:String, password:String, completionHandler: @escaping (_ success: Bool, _ error:String?) -> Void) {
         // MARK: TODO
         /*
          call  taskForPost method in UdacityClient.swift  - for authenticating user
@@ -28,7 +28,7 @@ extension UdacityClient {
             // MARK: TODO - extract Udacity user ID
             //...
             guard error != nil else {
-                completionHandler(false, error)
+                completionHandler(false, "\(error)") //  to convert NSError to string
                 return
             }
             
