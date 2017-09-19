@@ -20,6 +20,8 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     @IBOutlet var udacityLink: UILabel!
     @IBOutlet weak var debugTextLabel: UILabel!
     
+    let udacityClient = UdacityClient().sharedInstance()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +50,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             
             // authenticateUdacityUser(email, password) {() in  ...}
             
-            UdacityClient.sharedInstance().authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
+            udacityClient.authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
                 //  success  -- implies that Udacity account id has been extracted
                 
                 if success {
@@ -92,7 +94,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as AnyObject
                 } catch {
-                    self.displayError("Could not parse the data as JSON: '\(newData)'")
+                    self.displayError("Could not parse the data as JSON: '\(String(describing: newData))'")
                 }
                 if let thisSession = parsedResult["session"] as? [String:AnyObject] {
                     if thisSession["id"] as? [String:AnyObject] != nil {

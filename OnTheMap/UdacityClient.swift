@@ -60,7 +60,19 @@ class UdacityClient : NSObject {
  
     
     
-    //MARK: TODO Define properties for storing student ID, First Name, & Last NAme
+    //MARK: TODO Define properties for storing student ID, First Name, & Last Name
+    struct StudentInfo {
+        
+        var studentID: String
+        var firstName: String
+        var lastName: String
+        
+        init(studentID: String, firstName: String, lastName: String) {
+            self.studentID = studentID
+            self.firstName = firstName
+            self.lastName = lastName
+        }
+    }
 
 
 

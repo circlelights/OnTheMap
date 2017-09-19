@@ -28,11 +28,11 @@ extension UdacityClient {
             // MARK: TODO - extract Udacity user ID
             //...
             guard error != nil else {
-                completionHandler(false, "\(error)") //  to convert NSError to string
+                completionHandler(false, "\(String(describing: error))") //  to convert NSError to string
                 return
             }
             
-            // success means: - I have etracted the user ID and stored itin UdacityClient
+            // success means: - I have etracted the user ID and stored it in UdacityClient
             completionHandler(true, nil)
         }
     }

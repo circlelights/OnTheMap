@@ -54,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08CEC0101F71DCA4007A13E9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */,
+				DFFA25E51ECBB8B400D8019D /* MapViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		9B3FA2EE1E980B58002F9C6E = {
 			isa = PBXGroup;
 			children = (
@@ -77,8 +86,7 @@
 				9B3FA2FA1E980B58002F9C6E /* AppDelegate.swift */,
 				DF6252A21ED90073007DD9CD /* GCDBlackBox.swift */,
 				9BFBC3B11EC0CA3A008D3BE1 /* Model */,
-				9B3FA30C1E980C56002F9C6E /* LoginViewController.swift */,
-				DFFA25E51ECBB8B400D8019D /* MapViewController.swift */,
+				08CEC0101F71DCA4007A13E9 /* ViewControllers */,
 				9B3FA2FE1E980B58002F9C6E /* Main.storyboard */,
 				9B3FA3011E980B58002F9C6E /* Assets.xcassets */,
 				9B3FA30E1E983918002F9C6E /* on-the-map-assets-new */,
