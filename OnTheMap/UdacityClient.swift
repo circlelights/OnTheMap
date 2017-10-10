@@ -56,7 +56,7 @@ class UdacityClient : NSObject {
     
     // shared session
     //    var session = URLSession.shared
-    var studentInfo = LoginViewController()
+    //var studentInfo = LoginViewController()
  
     
     

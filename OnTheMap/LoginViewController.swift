@@ -56,11 +56,14 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 if success {
                     // MARK: TODO
                     //1 . GET from udacty, user's first_name, & last_name - store in UdacityClient
+                    
                     //2. GET from Parse - the user's student location, if it exists
                     //3. GET from Parse - the latest 100 student locations
                     //4.  Transition to the map view
                 }
             })
+            
+            
             /*
              Steps for Authentication...
              https://www.udacity.com/api/session
@@ -73,7 +76,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
              Extra Steps...
              Step 4: Get the user id ;)
              Step 5: Go to the next view!
-             */
+             
             let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
             request.httpMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -112,8 +115,10 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 print("\tfinished printing data...")
             }
             task.resume()
+          */
             
         }
+
     }
     
     // given raw JSON, return a usable Foundation object
