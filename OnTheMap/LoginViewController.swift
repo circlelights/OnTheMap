@@ -122,19 +122,19 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     }
     
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
-        
-        var parsedResult: AnyObject! = nil
-        do {
-            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
-        } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
-        }
-        
-        completionHandlerForConvertData(parsedResult, nil)
-    }
-    
+//    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
+//        
+//        var parsedResult: AnyObject! = nil
+//        do {
+//            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+//        } catch {
+//            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+//            completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+//        }
+//        
+//        completionHandlerForConvertData(parsedResult, nil)
+//    }
+//    
     
     private func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {
