@@ -56,9 +56,12 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 if success {
                     // MARK: TODO
                     //1 . GET from udacty, user's first_name, & last_name - store in UdacityClient
+                    //UdacityClient.taskForPOST(<#T##UdacityClient#>)
                     
                     //2. GET from Parse - the user's student location, if it exists
+                    //ParseClient.taskForGETSingleLocationParse(<#T##ParseClient#>)
                     //3. GET from Parse - the latest 100 student locations
+                    
                     //4.  Transition to the map view
                 }
             })
