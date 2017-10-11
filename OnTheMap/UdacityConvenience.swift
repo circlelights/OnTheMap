@@ -25,8 +25,11 @@ extension UdacityClient {
         request.httpBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".data(using: String.Encoding.utf8)
         
         taskForPOST(request: request) { (data, error) in
-            // MARK: TODO - extract Udacity user ID
-            //...
+            // MARK: TODO - get parsedResult from data
+            
+            // MARK: TODO - extract Udacity user ID and save it in StudentInfo struct
+            
+            // MARK: TODO - extract Udacity session ID and save it in StudentInfo struct
             guard error != nil else {
                 completionHandler(false, "\(String(describing: error))") //  to convert NSError to string
                 return

@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     let udacityClient = UdacityClient().sharedInstance()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.layer.borderWidth = 1.0
@@ -79,6 +80,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
              Extra Steps...
              Step 4: Get the user id ;)
              Step 5: Go to the next view!
+ */
              
             let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
             request.httpMethod = "POST"
@@ -102,23 +104,40 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 } catch {
                     self.displayError("Could not parse the data as JSON: '\(String(describing: newData))'")
                 }
+                if let thisAccount = parsedResult["account"] as? [String:AnyObject] {
+                    if let key = thisAccount["key"] as? String {
+                        UdacityClient.StudentInfo.studentID = key
+                    }
+                    else {
+                        // MARK: TODO - take care of this fail point
+                    }
+                }
+                else {
+                    // MARK: TODO - take care of this fail point
+                }
+                
                 if let thisSession = parsedResult["session"] as? [String:AnyObject] {
-                    if thisSession["id"] as? [String:AnyObject] != nil {
+                    if let id = thisSession["id"] as? String  {
+                        UdacityClient.StudentInfo.sessionID = id
+                        
                         DispatchQueue.main.async {
                         self.completeLogin()
                         }
                     } else {
-                        print("Invalid Account")
+                        print("Invalid Session ID (nil)")
                         
                     }
                     
+                }
+                else {
+                    /// MARK: TODO - take care of this fail point
                 }
                 
                 print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
                 print("\tfinished printing data...")
             }
             task.resume()
-          */
+ 
             
         }
 

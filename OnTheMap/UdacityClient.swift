@@ -9,6 +9,10 @@
 import Foundation
 
 class UdacityClient : NSObject {
+ 
+    
+
+    
     
     func taskForPOST (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         // MARK: TODO - implement the network request based on the Udacity documentation
@@ -63,15 +67,10 @@ class UdacityClient : NSObject {
     //MARK: TODO Define properties for storing student ID, First Name, & Last Name
     struct StudentInfo {
         
-        var studentID: String
-        var firstName: String
-        var lastName: String
-        
-        init(studentID: String, firstName: String, lastName: String) {
-            self.studentID = studentID
-            self.firstName = firstName
-            self.lastName = lastName
-        }
+        static var studentID: String = ""  // this is thisAccount["key"] - from JSON returned for succesful login
+        static var sessionID: String = ""  // this thisSession["id"] - from JSON returned for succesful login
+        static var firstName: String = ""   // from JSON returned for successful GETting of Student's Public User Data from Udacity
+        static var lastName: String = ""   // from JSON returned for successful GETting of Student's Public User Data from Udacity
     }
 
 
