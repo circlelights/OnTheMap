@@ -51,10 +51,18 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             
             // authenticateUdacityUser(email, password) {() in  ...}
             
-            udacityClient.authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
+                udacityClient.sharedInstance().authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
                 //  success  -- implies that Udacity account id has been extracted
-                
-                if success {
+                    if success {
+                        self.completeLogin()
+                    } else {
+                        self.displayError(error)
+                    }
+                })
+            
+        }
+    }
+ 
                     // MARK: TODO
                     //1 . GET from udacty, user's first_name, & last_name - store in UdacityClient
                     //UdacityClient.taskForPOST(<#T##UdacityClient#>)
@@ -64,8 +72,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                     //3. GET from Parse - the latest 100 student locations
                     
                     //4.  Transition to the map view
-                }
-            })
+ 
             
             
             /*
@@ -81,67 +88,9 @@ class LoginViewController: UIViewController, UITabBarDelegate {
              Step 4: Get the user id ;)
              Step 5: Go to the next view!
  */
-             
-            let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = "{\"udacity\": {\"username\": \"\(emailTextField.text!)\", \"password\": \"\(passwordTextField.text!)\"}}".data(using: String.Encoding.utf8)
             
-            
-            let session = URLSession.shared
-            let task = session.dataTask(with: request as URLRequest) { data, response, error in
-                print("\nLoginViewController.loginPressed.task closure...")
-                if error != nil { // Handle error…
-                    return
-                }
-                
-                let range = Range(5..<data!.count)
-                let newData = data?.subdata(in: range) /* subset response data! */
-                var parsedResult: AnyObject! = nil
-                do {
-                    parsedResult = try JSONSerialization.jsonObject(with: newData!, options: .allowFragments) as AnyObject
-                } catch {
-                    self.displayError("Could not parse the data as JSON: '\(String(describing: newData))'")
-                }
-                if let thisAccount = parsedResult["account"] as? [String:AnyObject] {
-                    if let key = thisAccount["key"] as? String {
-                        UdacityClient.StudentInfo.studentID = key
-                    }
-                    else {
-                        // MARK: TODO - take care of this fail point
-                    }
-                }
-                else {
-                    // MARK: TODO - take care of this fail point
-                }
-                
-                if let thisSession = parsedResult["session"] as? [String:AnyObject] {
-                    if let id = thisSession["id"] as? String  {
-                        UdacityClient.StudentInfo.sessionID = id
-                        
-                        DispatchQueue.main.async {
-                        self.completeLogin()
-                        }
-                    } else {
-                        print("Invalid Session ID (nil)")
-                        
-                    }
-                    
-                }
-                else {
-                    /// MARK: TODO - take care of this fail point
-                }
-                
-                print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-                print("\tfinished printing data...")
-            }
-            task.resume()
- 
-            
-        }
 
-    }
+
     
     // given raw JSON, return a usable Foundation object
 //    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
