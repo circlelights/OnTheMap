@@ -62,50 +62,8 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             
         }
     }
- 
-                    // MARK: TODO
-                    //1 . GET from udacty, user's first_name, & last_name - store in UdacityClient
-                    //UdacityClient.taskForPOST(<#T##UdacityClient#>)
-                    
-                    //2. GET from Parse - the user's student location, if it exists
-                    //ParseClient.taskForGETSingleLocationParse(<#T##ParseClient#>)
-                    //3. GET from Parse - the latest 100 student locations
-                    
-                    //4.  Transition to the map view
- 
-            
-            
-            /*
-             Steps for Authentication...
-             https://www.udacity.com/api/session
-             
-             Step 1: Create a request token
-             Step 2: Ask the user for permission via the API ("login")
-             Step 3: Create a session ID
-             
-             
-             Extra Steps...
-             Step 4: Get the user id ;)
-             Step 5: Go to the next view!
- */
-            
-
-
     
-    // given raw JSON, return a usable Foundation object
-//    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
-//        
-//        var parsedResult: AnyObject! = nil
-//        do {
-//            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
-//        } catch {
-//            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-//            completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
-//        }
-//        
-//        completionHandlerForConvertData(parsedResult, nil)
-//    }
-//    
+
     
     private func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {

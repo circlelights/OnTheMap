@@ -28,9 +28,10 @@ extension UdacityClient {
             // MARK: TODO - get parsedResult from data
             var parsedResult: AnyObject! = nil
             do {
-                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as Any
+                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as AnyObject
             } catch {
-                self.displayError("Could not parse the data as JSON: '\(String(describing: data))'")
+                
+                displayError("Could not parse the data as JSON: '\(String(describing: data))'")
             }
             
             // MARK: TODO - extract Udacity user ID and save it in StudentInfo struct
