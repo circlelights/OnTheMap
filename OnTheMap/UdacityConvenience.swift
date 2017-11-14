@@ -43,10 +43,12 @@ extension UdacityClient {
                 }
                 else {
                     // MARK: TODO - take care of this fail point
+                    completionHandler(false, "Account is Incorrect or misspelled")
                 }
             }
             else {
                 // MARK: TODO - take care of this fail point
+                completionHandler(false, "The Key is incorrect")
             }
             // MARK: TODO - extract Udacity session ID and save it in StudentInfo struct
             
