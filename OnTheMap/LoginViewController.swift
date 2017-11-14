@@ -30,7 +30,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
         view.layer.cornerRadius = 10.0
         let attrStr = try! NSAttributedString(
             data: "Don't have an account?  <a href='https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated'>Sign Up</a>".data(using: String.Encoding.unicode, allowLossyConversion: true)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            options: [ NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html],
             documentAttributes: nil)
         udacityLink.attributedText = attrStr
         
