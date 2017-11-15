@@ -28,7 +28,7 @@ class ParseClient : NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                print("There was an error with your request: \(error)")
+                print("There was an error with your request: \(error!)")
                 return
             }
             
@@ -65,7 +65,7 @@ class ParseClient : NSObject {
 
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                print("There was an error with your request: \(error)")
+                print("There was an error with your request: \(error!)")
                 return
             }
             
@@ -97,7 +97,7 @@ class ParseClient : NSObject {
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
                 /* GUARD: Was there an error? */
                 guard (error == nil) else {
-                    print("There was an error with your request: \(error)")
+                    print("There was an error with your request: \(error!)")
                     return
                 }
                 

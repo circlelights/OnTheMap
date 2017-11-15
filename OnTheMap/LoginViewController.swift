@@ -28,11 +28,11 @@ class LoginViewController: UIViewController, UITabBarDelegate {
         super.viewDidLoad()
         view.layer.borderWidth = 1.0
         view.layer.cornerRadius = 10.0
-        let attrStr = try! NSAttributedString(
-            data: "Don't have an account?  <a href='https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated'>Sign Up</a>".data(using: String.Encoding.unicode, allowLossyConversion: true)!,
-            options: [ NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html],
-            documentAttributes: nil)
-        udacityLink.attributedText = attrStr
+//        let attrStr = try! NSAttributedString(
+//            data: "Don't have an account?  <a href='https://auth.udacity.com/sign-up?next=https%3A%2F%2Fclassroom.udacity.com%2Fauthenticated'>Sign Up</a>".data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+//            options: [ NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html],
+//            documentAttributes: nil)
+//        udacityLink.attributedText = attrStr
         
     }
     
