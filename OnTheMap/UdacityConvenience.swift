@@ -27,17 +27,17 @@ extension UdacityClient {
         taskForPOST(request: request) { (data, error) in
             // MARK: TODO - get parsedResult from data
             //Check if there is an error
-            var parsedResult: AnyObject! = nil
-            do {
-                // try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as AnyObject
-            } catch {
-                
-              //  displayError("Could not parse the data as JSON: '\(String(describing: data))'")
-            }
+//            var parsedResult: AnyObject! = nil
+//            do {
+//                // try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+//                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as AnyObject
+//            } catch {
+//
+//              //  displayError("Could not parse the data as JSON: '\(String(describing: data))'")
+//            }
             
             // MARK: TODO - extract Udacity user ID and save it in StudentInfo struct
-            if let thisAccount = parsedResult["account"] as? [String:AnyObject] {
+            if let thisAccount = data?["account"] as? [String:AnyObject] {
                 if let key = thisAccount["key"] as? String {
                     UdacityClient.StudentInfo.studentID = key
                 }
@@ -52,7 +52,7 @@ extension UdacityClient {
             }
             // MARK: TODO - extract Udacity session ID and save it in StudentInfo struct
             
-            if let thisSession = parsedResult["session"] as? [String:AnyObject] {
+            if let thisSession = data?["session"] as? [String:AnyObject] {
                 if let id = thisSession["id"] as? String  {
                     UdacityClient.StudentInfo.sessionID = id
                     //completion handler with session id and nil error
