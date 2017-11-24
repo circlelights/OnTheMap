@@ -81,7 +81,9 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     
     func displayError(_ errorString: String?) {
         if let errorString = errorString {
-            debugTextLabel.text = errorString
+            DispatchQueue.main.async {
+                self.debugTextLabel.text = errorString
+            }
         }
     }
     
