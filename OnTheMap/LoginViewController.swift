@@ -71,8 +71,8 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     }
     
     private func completeLogin() {
-        debugTextLabel.text = ""
         DispatchQueue.main.async {
+            self.debugTextLabel.text = ""
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "MapandTableTabView") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
         }

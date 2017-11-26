@@ -58,7 +58,7 @@ extension UdacityClient {
             else {
                 /// MARK: TODO - take care of this fail point
             }
-            guard error != nil else {
+            guard error == nil else {
                 completionHandler(false, "\(String(describing: error))") //  to convert NSError to string
                 return
             }
