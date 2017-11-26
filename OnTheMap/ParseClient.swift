@@ -39,7 +39,7 @@ class ParseClient : NSObject {
             }
             
             /* GUARD: Was there any data returned? */
-            guard data != nil else {
+            guard data == nil else {
                 print("No data was returned by the request!")
                 return
             }
@@ -50,6 +50,7 @@ class ParseClient : NSObject {
     }
     //Parse GET single Student Location Method - URL needs WHERE parameter added
     func taskForGETSingleLocationParse (request:NSMutableURLRequest, completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+        //Add key to urlString
         let urlString = ParseConstants.ParseURL
         let url = URL(string: urlString)
         let request = NSMutableURLRequest(url: url!)
@@ -121,7 +122,7 @@ class ParseClient : NSObject {
         }
         task.resume()
     }
-      //Task For PUT a student location - Add Object ID to the request
+      //Task For PUT a student location - Add Object ID to the request - PUT In Convenience
        func taskForPUTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
             let urlString = "https://parse.udacity.com/parse/classes/StudentLocation/8ZExGR5uX8"
             let url = URL(string: urlString)
@@ -143,7 +144,7 @@ class ParseClient : NSObject {
     
     // given raw JSON, return a usable Foundation object
     private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
-        
+        //Instead of returning AnyObject, return StudentLocation data - get the Array of StudentLocations from JSON results
         var parsedResult: AnyObject! = nil
         do {
             parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
