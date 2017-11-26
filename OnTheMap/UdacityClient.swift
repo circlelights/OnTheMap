@@ -51,14 +51,7 @@ class UdacityClient : NSObject {
         
         completionHandlerForConvertData(parsedResult, nil)
     }
-        
-        
-    
-    // shared session
-    //    var session = URLSession.shared
-    //var studentInfo = LoginViewController()
- 
-    
+
     
     //MARK: TODO Define properties for storing student ID, First Name, & Last Name
     struct StudentInfo {
@@ -70,9 +63,6 @@ class UdacityClient : NSObject {
     }
 
 
-
-   
-    
     
     // MARK: Shared Instance
     

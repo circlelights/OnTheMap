@@ -24,9 +24,10 @@ extension UdacityClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = "{\"udacity\": {\"username\": \"\(email)\", \"password\": \"\(password)\"}}".data(using: String.Encoding.utf8)
         
-        taskForPOST(request: request) { (data, error) in
+
             // MARK: TODO - get parsedResult from data
-            
+            taskForPOST(request: request) { (data, error) in
+                
             // MARK: TODO - extract Udacity user ID and save it in StudentInfo struct
             if let thisAccount = data?["account"] as? [String:AnyObject] {
                 if let key = thisAccount["key"] as? String {
@@ -47,10 +48,7 @@ extension UdacityClient {
                 if let id = thisSession["id"] as? String  {
                     UdacityClient.StudentInfo.sessionID = id
                     //completion handler with session id and nil error
-                    
-                    DispatchQueue.main.async {
-                      //  self.completeLogin()
-                    }
+
                 } else {
                     print("Invalid Session ID (nil)")
                     
