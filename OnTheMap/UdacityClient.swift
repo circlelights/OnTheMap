@@ -9,10 +9,6 @@
 import Foundation
 
 class UdacityClient : NSObject {
- 
-    
-
-    
     
     func taskForPOST (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         // MARK: TODO - implement the network request based on the Udacity documentation

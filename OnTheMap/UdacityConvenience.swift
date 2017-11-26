@@ -26,15 +26,6 @@ extension UdacityClient {
         
         taskForPOST(request: request) { (data, error) in
             // MARK: TODO - get parsedResult from data
-            //Check if there is an error
-//            var parsedResult: AnyObject! = nil
-//            do {
-//                // try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-//                parsedResult = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as AnyObject
-//            } catch {
-//
-//              //  displayError("Could not parse the data as JSON: '\(String(describing: data))'")
-//            }
             
             // MARK: TODO - extract Udacity user ID and save it in StudentInfo struct
             if let thisAccount = data?["account"] as? [String:AnyObject] {
