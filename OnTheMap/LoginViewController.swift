@@ -17,7 +17,6 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet var udacityLink: UILabel!
     @IBOutlet weak var debugTextLabel: UILabel!
     
     let udacityClient = UdacityClient().sharedInstance()
