@@ -15,9 +15,9 @@ class ParseClient : NSObject {
     //Parse GET Student Locations Method  URL May need parameters added
     func taskForGETParse (request:NSMutableURLRequest, completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         
-        let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseURL)!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        let request = NSMutableURLRequest(url: URL(string: ParseConstants.Where)!)
+        request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             func sendError(_ error: String) {
@@ -51,11 +51,11 @@ class ParseClient : NSObject {
     //Parse GET single Student Location Method - URL needs WHERE parameter added
     func taskForGETSingleLocationParse (request:NSMutableURLRequest, completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         //Add key to urlString
-        let urlString = ParseConstants.ParseURL
+        let urlString = ParseConstants.Where
         let url = URL(string: urlString)
         let request = NSMutableURLRequest(url: url!)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
             func sendError(_ error: String) {
@@ -88,12 +88,23 @@ class ParseClient : NSObject {
     }
     //Task for POSTING A STUDENT LOCATION - NEED STRUCT WITH STUDENT LOCATION VARIABLES
     func taskForPOSTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+        
+        let student = StudentLocation.self
+        
+        let key = student.uniqueKey as! String
+        let firstname = student.firstName as! String
+        let lastName = student.lastName as! String
+        let map = student.mapString as! String
+        let media = student.mediaURL as! String
+        let lat = student.latitude as! Double
+        let long = student.longitude as! Double
+        
         let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseURL)!)
         request.httpMethod = "POST"
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".data(using: String.Encoding.utf8)
+        request.httpBody = "{\"uniqueKey\": \"\(key)\", \"firstName\": \"\(firstname)\", \"lastName\":  \"\(lastname)\",\"mapString\":  \"\(map)\", \"mediaURL\":  \"\(media)\",\"latitude\":  \"\(lat)\", \"longitude\":  \"\(long)\"}".data(using: String.Encoding.utf8)
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
                 /* GUARD: Was there an error? */
@@ -128,8 +139,8 @@ class ParseClient : NSObject {
             let url = URL(string: urlString)
             let request = NSMutableURLRequest(url: url!)
             request.httpMethod = "PUT"
-            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".data(using: String.Encoding.utf8)
             let session = URLSession.shared
@@ -153,7 +164,7 @@ class ParseClient : NSObject {
             completionHandlerForConvertData(nil, NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
         }
         
-        completionHandlerForConvertData(parsedResult, nil)
+        completionHandlerForConvertData(parsedResult, nil) 
     }
     
 
