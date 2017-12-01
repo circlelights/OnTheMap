@@ -22,6 +22,7 @@
 		DFE666201EC7544F008A3AD6 /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE6661F1EC7544F008A3AD6 /* ParseConvenience.swift */; };
 		DFE666221EC75464008A3AD6 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE666211EC75464008A3AD6 /* ParseClient.swift */; };
 		DFFA25E61ECBB8B400D8019D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFFA25E51ECBB8B400D8019D /* MapViewController.swift */; };
+		EB7B46E61FD0CEAE00F712BA /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B46E51FD0CEAE00F712BA /* StudentLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		DFE6661F1EC7544F008A3AD6 /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		DFE666211EC75464008A3AD6 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		DFFA25E51ECBB8B400D8019D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		EB7B46E51FD0CEAE00F712BA /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				9BFBC3B21EC0CA48008D3BE1 /* Clients */,
+				EB7B46E51FD0CEAE00F712BA /* StudentLocation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B1D1FE11EBA7B39003E3320 /* UdacityClient.swift in Sources */,
+				EB7B46E61FD0CEAE00F712BA /* StudentLocation.swift in Sources */,
 				DF6252A51ED90994007DD9CD /* UdacityConstants.swift in Sources */,
 				DFE666201EC7544F008A3AD6 /* ParseConvenience.swift in Sources */,
 				DF15902A1F8D13B60013D053 /* ParseConstants.swift in Sources */,

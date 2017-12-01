@@ -20,21 +20,21 @@ struct StudentLocation {
     var latitude: Double
     var longitude: Double
 }
-    //This should be placed in Client
-    func parseGETRequest() {
-    let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseURL)!)
-    request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
-    request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
-    let session = URLSession.shared
-    let task = session.dataTask(with: request as URLRequest) { data, response, error in
-        if error != nil { // Handle error...
-            return
-        }
-        
-        print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
-    }
-    task.resume()
-}
+//    //This should be placed in Client
+//    func parseGETRequest() {
+//    let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseURL)!)
+//    request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
+//    request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
+//    let session = URLSession.shared
+//    let task = session.dataTask(with: request as URLRequest) { data, response, error in
+//        if error != nil { // Handle error...
+//            return
+//        }
+//
+//        print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
+//    }
+//    task.resume()
+//}
     
 }
 

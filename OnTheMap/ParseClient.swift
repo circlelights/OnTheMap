@@ -88,23 +88,15 @@ class ParseClient : NSObject {
     }
     //Task for POSTING A STUDENT LOCATION - NEED STRUCT WITH STUDENT LOCATION VARIABLES
     func taskForPOSTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
-        
-        let student = StudentLocation.self
-        
-        let key = student.uniqueKey as! String
-        let firstname = student.firstName as! String
-        let lastName = student.lastName as! String
-        let map = student.mapString as! String
-        let media = student.mediaURL as! String
-        let lat = student.latitude as! Double
-        let long = student.longitude as! Double
-        
+    
+        // MARK: instance var  userStudentLocation is globally accessible from StudentLocation.swift
+    
         let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseURL)!)
         request.httpMethod = "POST"
         request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"\(key)\", \"firstName\": \"\(firstname)\", \"lastName\":  \"\(lastname)\",\"mapString\":  \"\(map)\", \"mediaURL\":  \"\(media)\",\"latitude\":  \"\(lat)\", \"longitude\":  \"\(long)\"}".data(using: String.Encoding.utf8)
+        request.httpBody = "{\"uniqueKey\": \"\(userStudentLocation.uniqueKey)\", \"firstName\": \"\(userStudentLocation.firstName)\", \"lastName\":  \"\(userStudentLocation.lastName)\",\"mapString\":  \"\(userStudentLocation.mapString)\", \"mediaURL\":  \"\(userStudentLocation.mediaURL)\",\"latitude\":  \"\(userStudentLocation.latitude)\", \"longitude\":  \"\(userStudentLocation.longitude)\"}".data(using: String.Encoding.utf8)
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { data, response, error in
                 /* GUARD: Was there an error? */

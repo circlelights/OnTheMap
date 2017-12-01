@@ -22,6 +22,19 @@ extension ParseClient {
 
         
     }
+    
+    // MARK: StudentLocation keys
+    struct StudentLocationKeys {
+        static let firstName = "firstName"
+        static let lastName = "lastName"
+        static let latitude = "latitude"
+        static let longitude = "longitude"
+        static let mapString = "mapString"
+        static let mediaURL = "mediaURL"
+        static let objectId = "objectId"
+        static let uniqueKey = "uniqueKey"
+    }
+    
     // MARK: Parameter Keys
     struct ParseParameterKeys {
         static let RequestToken = "request_token"
@@ -39,5 +52,7 @@ extension ParseClient {
         static let ID = "id"
         static let Expiration = "expiration"
     }
+    
+    
     
 }
