@@ -17,10 +17,10 @@ extension ParseClient {
         static let ApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         
         // MARK: URLs
-        static let ParseURL = "https://parse.udacity.com/parse/classes/StudentLocation"
-        static let Where = "https://parse.udacity.com/parse/classes/StudentLocation?where="
-
-        
+        static let ParseGET = "https://parse.udacity.com/parse/classes/StudentLocation?limit=100"
+        static let ParsePOST = "https://parse.udacity.com/parse/classes/StudentLocation"
+        static let Where = "https://parse.udacity.com/parse/classes/StudentLocation?where={\"uniqueKey\": \"\(userStudentLocation.uniqueKey)\""
+        static let ParsePUT = "https://parse.udacity.com/parse/classes/StudentLocation/\(userStudentLocation.objectId)\""
     }
     
     // MARK: StudentLocation keys

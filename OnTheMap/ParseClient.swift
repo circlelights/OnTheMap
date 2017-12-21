@@ -15,7 +15,7 @@ class ParseClient : NSObject {
     //Parse GET Student Locations Method  URL May need parameters added
     func taskForGETParse (request:NSMutableURLRequest, completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         
-        let request = NSMutableURLRequest(url: URL(string: ParseConstants.Where)!)
+        let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseGET)!)
         request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
         let session = URLSession.shared
@@ -91,7 +91,7 @@ class ParseClient : NSObject {
     
         // MARK: instance var  userStudentLocation is globally accessible from StudentLocation.swift
     
-        let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseURL)!)
+        let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParsePOST)!)
         request.httpMethod = "POST"
         request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -127,14 +127,14 @@ class ParseClient : NSObject {
     }
       //Task For PUT a student location - Add Object ID to the request - PUT In Convenience
        func taskForPUTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
-            let urlString = "https://parse.udacity.com/parse/classes/StudentLocation/8ZExGR5uX8"
+            let urlString = ParseConstants.ParsePUT
             let url = URL(string: urlString)
             let request = NSMutableURLRequest(url: url!)
             request.httpMethod = "PUT"
             request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
             request.addValue(ParseConstants.ApplicationID, forHTTPHeaderField: "X-Parse-REST-API-Key")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Cupertino, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.322998, \"longitude\": -122.032182}".data(using: String.Encoding.utf8)
+            request.httpBody = "{\"uniqueKey\": \"\(userStudentLocation.uniqueKey)\", \"firstName\": \"\(userStudentLocation.firstName)\", \"lastName\":  \"\(userStudentLocation.lastName)\",\"mapString\":  \"\(userStudentLocation.mapString)\", \"mediaURL\":  \"\(userStudentLocation.mediaURL)\",\"latitude\":  \"\(userStudentLocation.latitude)\", \"longitude\":  \"\(userStudentLocation.longitude)\"}".data(using: String.Encoding.utf8)
             let session = URLSession.shared
             let task = session.dataTask(with: request as URLRequest) { data, response, error in
             if error != nil { // Handle error…
