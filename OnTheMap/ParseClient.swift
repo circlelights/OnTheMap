@@ -4,7 +4,6 @@
 //
 //  Created by Jason Isler on 5/13/17.
 //  Copyright © 2017 Developer2017. All rights reserved.
-//
 
 import Foundation
 
@@ -48,6 +47,7 @@ class ParseClient : NSObject {
         }
         task.resume()
     }
+    
     //Parse GET single Student Location Method - URL needs WHERE parameter added
     func taskForGETSingleLocationParse (request:NSMutableURLRequest, completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         //Add key to urlString
@@ -86,6 +86,7 @@ class ParseClient : NSObject {
     }
     task.resume()
     }
+    
     //Task for POSTING A STUDENT LOCATION - NEED STRUCT WITH STUDENT LOCATION VARIABLES
     func taskForPOSTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
     
@@ -116,15 +117,12 @@ class ParseClient : NSObject {
                     print("No data was returned by the request!")
                     return
                 }
-//            if error != nil { // Handle error…
-//                return
-//            }
-//            print(NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
-            
+
             self.convertDataWithCompletionHandler(data!, completionHandlerForConvertData: completionHandlerForPOST)
         }
         task.resume()
     }
+    
       //Task For PUT a student location - Add Object ID to the request - PUT In Convenience
        func taskForPUTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
             let urlString = ParseConstants.ParsePUT
@@ -158,8 +156,6 @@ class ParseClient : NSObject {
         
         completionHandlerForConvertData(parsedResult, nil) 
     }
-    
-
     
     
     // MARK: Shared Instance
