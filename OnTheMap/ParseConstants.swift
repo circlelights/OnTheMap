@@ -6,7 +6,10 @@
 //  Copyright © 2017 Developer2017. All rights reserved.
 //
 
+
+
 import Foundation
+
 extension ParseClient {
     
     // MARK: Constants
@@ -15,6 +18,14 @@ extension ParseClient {
         // MARK: API Key and Application ID
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         static let ApplicationID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+
+        static let Scheme = "https"
+        static let Host = "parse.udacity.com"
+        static let Path = "/parse/classes/StudentLocation"
+        static let QueryItems = [URLQueryItem]()
+        
+        static let QueryItemGET = URLQueryItem(name: "limit", value: "100")
+        static let QueryItemPOST = URLQueryItem(name: "where", value: "{\"uniqueKey\": \"\(userStudentLocation.uniqueKey)\"")
         
         // MARK: URLs
         static let ParseGET = "https://parse.udacity.com/parse/classes/StudentLocation?limit=100"

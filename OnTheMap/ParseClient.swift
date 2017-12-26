@@ -156,7 +156,24 @@ class ParseClient : NSObject {
         
         completionHandlerForConvertData(parsedResult, nil) 
     }
+
     
+    // create a URL from parameters
+    private func ParseURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+        
+        var components = URLComponents()
+        components.scheme = ParseConstants.Scheme
+        components.host = ParseConstants.Host
+        components.path = ParseConstants.Path + (withPathExtension ?? "")
+        components.queryItems = [URLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = URLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        return components.url!
+    }
     
     // MARK: Shared Instance
     
