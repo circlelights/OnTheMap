@@ -58,13 +58,17 @@
                                 <rect key="frame" x="166" y="471" width="42" height="20.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pld-5l-faH">
-                                <rect key="frame" x="167" y="471" width="42" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pld-5l-faH">
+                                <rect key="frame" x="88" y="471" width="200" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="T7h-c3-KNQ">
+                                <rect key="frame" x="177" y="412" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -75,13 +79,14 @@
                     <connections>
                         <outlet property="debugTextLabel" destination="Pld-5l-faH" id="AtV-na-kCW"/>
                         <outlet property="emailTextField" destination="sSX-oa-KOo" id="lJJ-wk-Up3"/>
+                        <outlet property="loadingLogin" destination="T7h-c3-KNQ" id="fbJ-2D-8sp"/>
                         <outlet property="loginButton" destination="fxu-l4-YAs" id="W3O-BC-rN7"/>
                         <outlet property="passwordTextField" destination="608-Xl-aK8" id="7u7-4Z-1c4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-474" y="1"/>
+            <point key="canvasLocation" x="-474.39999999999998" y="0.44977511244377816"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="6Fx-aZ-WVu">

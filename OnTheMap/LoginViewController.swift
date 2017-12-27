@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
+    @IBOutlet weak var loadingLogin: UIActivityIndicatorView!
     
     let udacityClient = UdacityClient().sharedInstance()
     
@@ -25,6 +26,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadingLogin.stopAnimating()
         view.layer.borderWidth = 1.0
         view.layer.cornerRadius = 10.0
     }
@@ -56,7 +58,12 @@ class LoginViewController: UIViewController, UITabBarDelegate {
         }
     }
     
-
+    
+    //    This is the function that will enable the initial student location to be seen; however, I must pass in the correct parameters, whcih may require escaping and/or correctly using the URL.
+//    private func getStudentLocation() {
+//        ParseClient.sharedInstance().taskForGETSingleLocationParse(request: , completionHandlerForGET: <#T##(AnyObject?, NSError?) -> Void#>)
+//    }
+    
     
     private func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {
@@ -66,6 +73,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     
     private func completeLogin() {
         DispatchQueue.main.async {
+            self.loadingLogin.startAnimating()
             self.debugTextLabel.text = ""
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "MapandTableTabView") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
@@ -88,28 +96,28 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     
     
     
-    private func deleteSession() {
-        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-        request.httpMethod = "DELETE"
-        var xsrfCookie: HTTPCookie? = nil
-        let sharedCookieStorage = HTTPCookieStorage.shared
-        for cookie in sharedCookieStorage.cookies! {
-            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
-        }
-        if let xsrfCookie = xsrfCookie {
-            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
-        }
-        let session = URLSession.shared
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
-            if error != nil { // Handle error…
-                return
-            }
-            let range = Range(5..<data!.count)
-            let newData = data?.subdata(in: range) /* subset response data! */
-            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
-        }
-        task.resume()
-    }
+//    private func deleteSession() {
+//        let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+//        request.httpMethod = "DELETE"
+//        var xsrfCookie: HTTPCookie? = nil
+//        let sharedCookieStorage = HTTPCookieStorage.shared
+//        for cookie in sharedCookieStorage.cookies! {
+//            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+//        }
+//        if let xsrfCookie = xsrfCookie {
+//            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+//        }
+//        let session = URLSession.shared
+//        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+//            if error != nil { // Handle error…
+//                return
+//            }
+//            let range = Range(5..<data!.count)
+//            let newData = data?.subdata(in: range) /* subset response data! */
+//            print(NSString(data: newData!, encoding: String.Encoding.utf8.rawValue)!)
+//        }
+//        task.resume()
+//    }
     
     
 }
@@ -131,28 +139,28 @@ private extension LoginViewController {
         }
     }
     
-    private func escapedParameters(_ parameters: [String:AnyObject]) -> String {
-        
-        if parameters.isEmpty {
-            return ""
-        } else {
-            var keyValuePairs = [String]()
-            
-            for (key, value) in parameters {
-                
-                // make sure that it is a string value
-                let stringValue = "\(value)"
-                
-                // escape it
-                let escapedValue = stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                
-                // append it
-                keyValuePairs.append(key + "=" + "\(escapedValue!)")
-                
-            }
-            
-            return "?\(keyValuePairs.joined(separator: "&"))"
-        }
-    }
+//    private func escapedParameters(_ parameters: [String:AnyObject]) -> String {
+//
+//        if parameters.isEmpty {
+//            return ""
+//        } else {
+//            var keyValuePairs = [String]()
+//
+//            for (key, value) in parameters {
+//
+//                // make sure that it is a string value
+//                let stringValue = "\(value)"
+//
+//                // escape it
+//                let escapedValue = stringValue.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+//
+//                // append it
+//                keyValuePairs.append(key + "=" + "\(escapedValue!)")
+//
+//            }
+//
+//            return "?\(keyValuePairs.joined(separator: "&"))"
+//        }
+//    }
     
 }
