@@ -11,8 +11,11 @@ class ParseClient : NSObject {
     
     // shared session
     var session = URLSession.shared
+    var studentLocation: StudentLocation?
+    var studentsLocations : [StudentLocation]?
+    
     //Parse GET Student Locations Method  URL May need parameters added
-    func taskForGETParse (request:NSMutableURLRequest, completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+    func taskForGETParse (completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         
         let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseGET)!)
         request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -49,7 +52,7 @@ class ParseClient : NSObject {
     }
     
     //Parse GET single Student Location Method - URL needs WHERE parameter added
-    func taskForGETSingleLocationParse (request:NSMutableURLRequest, completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+    func taskForGETSingleLocationParse (completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         //Add key to urlString
         let urlString = ParseConstants.Where
         let url = URL(string: urlString)

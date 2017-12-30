@@ -20,6 +20,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     @IBOutlet weak var debugTextLabel: UILabel!
     @IBOutlet weak var loadingLogin: UIActivityIndicatorView!
     
+    
     let udacityClient = UdacityClient().sharedInstance()
     
     
@@ -49,20 +50,24 @@ class LoginViewController: UIViewController, UITabBarDelegate {
                 udacityClient.sharedInstance().authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
                 //  success  -- implies that Udacity account id has been extracted
                     if success {
+                        self.getStudentLocations()
                         self.completeLogin()
                     } else {
                         self.displayError(error)
                     }
                 })
-            
         }
     }
     
     
-    //    This is the function that will enable the initial student location to be seen; however, I must pass in the correct parameters, whcih may require escaping and/or correctly using the URL.
-//    private func getStudentLocation() {
-//        ParseClient.sharedInstance().taskForGETSingleLocationParse(request: , completionHandlerForGET: <#T##(AnyObject?, NSError?) -> Void#>)
-//    }
+//  This is the function that will enable the initial student location to be seen; however, I must pass in the correct parameters, whcih may require escaping and/or correctly using the URL.
+    private func getStudentLocations() {
+        ParseClient.sharedInstance().taskForGETParse(completionHandlerForGET: {(studentLocation, error) in
+            if (error != nil) {
+                self.displayError("Failed")
+            }
+        })
+    }
     
     
     private func resignIfFirstResponder(_ textField: UITextField) {
