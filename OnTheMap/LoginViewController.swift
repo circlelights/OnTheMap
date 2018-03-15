@@ -49,11 +49,11 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             
                 udacityClient.sharedInstance().authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
                 //  success  -- implies that Udacity account id has been extracted
-                    if success {
+                    if success != false {
                         self.getStudentLocations()
                         self.completeLogin()
                     } else {
-                        self.displayError(error)
+                        self.displayError("This did not work as intended")
                     }
                 })
         }
