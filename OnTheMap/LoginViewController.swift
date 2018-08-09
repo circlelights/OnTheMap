@@ -49,18 +49,18 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             
                 udacityClient.sharedInstance().authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
                 //  success  -- implies that Udacity account id has been extracted
-//                    if success {
-//                        self.getStudentLocations()
-//                        self.completeLogin()
-//                    } else {
-//                        self.displayError(error)
-//                    }
-                    if error != nil {
-                        self.displayError(error)
-                    } else if error == nil {
+                    if success {
                         self.getStudentLocations()
                         self.completeLogin()
+                    } else {
+                        self.displayError(error)
                     }
+//                    if error != nil {
+//                        self.displayError(error)
+//                    } else if error == nil {
+//                        self.getStudentLocations()
+//                        self.completeLogin()
+//                    }
 
                 })
         }
