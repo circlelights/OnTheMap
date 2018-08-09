@@ -24,7 +24,7 @@ class UdacityClient : NSObject {
             
             print("\nLoginViewController.loginPressed.task closure...")
             if error != nil { // Handle error…
-                //                   self.displayError(<#T##errorString: String?##String?#>)
+                 print("Something is wrong")
                 
                 return
             }
