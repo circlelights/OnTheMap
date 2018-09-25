@@ -118,7 +118,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // JSON data that you will download from Parse.
     
     
-    private func postAStudentLocation(newUniqueKey: String, newAddress: String, newLat: String, newLon: String, mediaURL: String) {
+    fileprivate func postAStudentLocation(_ newUniqueKey: String, newAddress: String, newLat: String, newLon: String, mediaURL: String) {
         
         let request = NSMutableURLRequest(url: URL(string: ParseClient.ParseConstants.ParsePOST)!)
         request.httpMethod = "POST"
@@ -153,7 +153,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
     }
     
-    private func putAStudentLocation(newUniqueKey: String, newAddress: String, newLat: String, newLon: String, objectId: String, mediaURL: String) {
+    fileprivate func putAStudentLocation(_ newUniqueKey: String, newAddress: String, newLat: String, newLon: String, objectId: String, mediaURL: String) {
         
         let urlString = ParseClient.ParseConstants.ParsePUT
         let url = URL(string: urlString)

@@ -47,7 +47,7 @@ class LoginViewController: UIViewController, UITabBarDelegate {
             
             // authenticateUdacityUser(email, password) {() in  ...}
             
-                udacityClient.sharedInstance().authenticateUser(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
+                udacityClient.sharedInstance().authenticateUser(emailTextField.text!, password: passwordTextField.text!, completionHandler: { (success, error) in
                 //  success  -- implies that Udacity account id has been extracted
                     if success {
                         self.getStudentLocations()
@@ -68,8 +68,8 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     
     
 //  This is the function that will enable the initial student location to be seen; however, I must pass in the correct parameters, whcih may require escaping and/or correctly using the URL.
-    private func getStudentLocations() {
-        ParseClient.sharedInstance().taskForGETParse(completionHandlerForGET: {(studentLocation, error) in
+    fileprivate func getStudentLocations() {
+        ParseClient.sharedInstance().taskForGETParse({(studentLocation, error) in
             if (error != nil) {
                 self.displayError("Failed")
             }
@@ -77,13 +77,13 @@ class LoginViewController: UIViewController, UITabBarDelegate {
     }
     
     
-    private func resignIfFirstResponder(_ textField: UITextField) {
+    fileprivate func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {
             textField.resignFirstResponder()
         }
     }
     
-    private func completeLogin() {
+    fileprivate func completeLogin() {
         DispatchQueue.main.async {
             self.loadingLogin.startAnimating()
             self.debugTextLabel.text = ""

@@ -15,7 +15,7 @@ class ParseClient : NSObject {
     var studentsLocations : [StudentLocation]?
     
     //Parse GET Student Locations Method  URL May need parameters added
-    func taskForGETParse (completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+    func taskForGETParse (_ completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         
         let request = NSMutableURLRequest(url: URL(string: ParseConstants.ParseGET)!)
         request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -52,7 +52,7 @@ class ParseClient : NSObject {
     }
     
     //Parse GET single Student Location Method - URL needs WHERE parameter added
-    func taskForGETSingleLocationParse (completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+    func taskForGETSingleLocationParse (_ completionHandlerForGET:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
         //Add key to urlString
         let urlString = ParseConstants.Where
         let url = URL(string: urlString)
@@ -91,7 +91,7 @@ class ParseClient : NSObject {
     }
     
     //Task for POSTING A STUDENT LOCATION - NEED STRUCT WITH STUDENT LOCATION VARIABLES
-    func taskForPOSTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+    func taskForPOSTStudentLocationParse (_ request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
     
         // MARK: instance var  userStudentLocation is globally accessible from StudentLocation.swift
     
@@ -127,7 +127,7 @@ class ParseClient : NSObject {
     }
     
       //Task For PUT a student location - Add Object ID to the request - PUT In Convenience
-       func taskForPUTStudentLocationParse (request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
+       func taskForPUTStudentLocationParse (_ request:NSMutableURLRequest, completionHandlerForPOST:@escaping (_ data:AnyObject?, _ error: NSError?)->Void) {
             let urlString = ParseConstants.ParsePUT
             let url = URL(string: urlString)
             let request = NSMutableURLRequest(url: url!)
@@ -147,7 +147,7 @@ class ParseClient : NSObject {
     }
     
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
+    fileprivate func convertDataWithCompletionHandler(_ data: Data, completionHandlerForConvertData: (_ result: AnyObject?, _ error: NSError?) -> Void) {
         //Instead of returning AnyObject, return StudentLocation data - get the Array of StudentLocations from JSON results
         var parsedResult: AnyObject! = nil
         do {
@@ -162,7 +162,7 @@ class ParseClient : NSObject {
 
     
     // create a URL from parameters
-    private func ParseURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
+    fileprivate func ParseURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()
         components.scheme = ParseConstants.Scheme

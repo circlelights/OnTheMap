@@ -12,7 +12,7 @@ extension UdacityClient {
     
     // Convenience Method for authenticating Udacity User
    // (_ success: Bool, _ error:String?)
-    func authenticateUser (email:String, password:String, completionHandler: @escaping (_ success:Bool, _ errorString: String) -> Void) {
+    func authenticateUser (_ email:String, password:String, completionHandler: @escaping (_ success:Bool, _ errorString: String) -> Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "POST"
@@ -33,24 +33,26 @@ extension UdacityClient {
                 if let newData = data?.subdata(in: range) {
                     do {
                         let newUserInfo = try JSONSerialization.jsonObject(with: newData, options: JSONSerialization.ReadingOptions.allowFragments) as AnyObject
-                        //                        print(newUserInfo)
+                        print(newUserInfo)
                         
-                        //                        if let theStatus = newUserInfo["status"]{
-                        //                            print(newUserInfo["error"])
-                        //                            completionHandler(false,(newUserInfo["error"] as? String)!)
-                        //                        } else {
+                        if let theStatus = newUserInfo["status"]{
+                            print(newUserInfo["error"] as Any)
+                            completionHandler(false,(newUserInfo["error"] as? String)!)
+                            } else {
                         // MARK: TODO - extract Udacity user ID and save it in StudentInfo struct
-                        let thisAccount = newUserInfo["account"] as! [String:AnyObject]
-                        let thisSession = newUserInfo["session"] as! [String:AnyObject]
+                                completionHandler(true,"")
+                                let thisAccount = newUserInfo["account"] as! [String:AnyObject]
+                                let thisSession = newUserInfo["session"] as! [String:AnyObject]
                         
-                        if let key = thisAccount["key"] as? String {
-                            UdacityClient.StudentInfo.studentID = key
-                            completionHandler(true,"")
-                        }
-                        else {
+                        
+                                if let key = thisAccount["key"] as? String {
+                                    UdacityClient.StudentInfo.studentID = key
+                                    completionHandler(true,"")
+                                }
+                                else {
                             // MARK: TODO - take care of this fail point
-                            completionHandler(false, "Account is Incorrect or misspelled")
-                        }
+                                    completionHandler(false, "Account is Incorrect or misspelled")
+                                }
                         
                         // MARK: TODO - extract Udacity session ID and save it in StudentInfo struct
                         
@@ -60,7 +62,7 @@ extension UdacityClient {
                         }
                         
                         //                            }
-                        
+                        }
                     } catch{}
                 }else {
                     completionHandler(false, "Unknown Error; Try Again")
